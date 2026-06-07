@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Calculadora de ROI</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="workspace" aria-label="Calculadora de ROI">
+        <form class="assumptions" id="roi-form">
+          <div class="panel-heading">
+            <div class="brand-heading">
+              <img src="./assets/logo-asaladeia.png" alt="Asaladeia" class="brand-logo" />
+              <div>
+                <h1>Calculadora de ROI</h1>
+              </div>
+            </div>
+            <button class="icon-button" type="button" id="reset-button" title="Restaurar defaults" aria-label="Restaurar defaults">
+              &#8635;
+            </button>
+          </div>
+
+          <div class="field-grid">
+            <label>
+              Funcionarios impactados
+              <input type="number" min="0" step="1" name="numFuncionarios" />
+            </label>
+            <label>
+              Horas economizadas por dia
+              <input type="number" min="0" step="0.1" name="horasEconomizadasDia" />
+            </label>
+            <label>
+              Custo hora medio
+              <input type="number" min="0" step="1" name="custoHoraFuncionario" />
+            </label>
+            <label>
+              Dias uteis por ano
+              <input type="number" min="0" step="1" name="diasUteisAno" />
+            </label>
+            <label>
+              Tarefas por dia por funcionario
+              <input type="number" min="0" step="1" name="tarefasDiaPorFuncionario" />
+            </label>
+            <label>
+              Custo medio por erro
+              <input type="number" min="0" step="1" name="custoMedioErro" />
+            </label>
+            <label>
+              Receita incremental mensal
+              <input type="number" min="0" step="100" name="receitaIncrementalMensal" />
+            </label>
+            <label>
+              Custo de implementacao
+              <input type="number" min="0" step="100" name="custoImplementacao" />
+            </label>
+            <label>
+              Custo operacional anual
+              <input type="number" min="0" step="100" name="custoOperacaoAnual" />
+            </label>
+            <label>
+              Moeda
+              <select name="moeda">
+                <option value="BRL">BRL</option>
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="range-row">
+            <label>
+              <span>Taxa de erro atual <strong id="taxaErroAtual-label"></strong></span>
+              <input type="range" min="0" max="100" step="1" name="taxaErroAtualPercent" />
+            </label>
+            <label>
+              <span>Margem de contribuicao <strong id="margemContribuicao-label"></strong></span>
+              <input type="range" min="0" max="100" step="1" name="margemContribuicaoPercent" />
+            </label>
+          </div>
+        </form>
+
+        <aside class="results" aria-label="Resultados financeiros">
+          <p class="eyebrow">Resultado do primeiro ano</p>
+          <div class="hero-metric">
+            <span>Beneficio anual</span>
+            <strong id="beneficioTotalAnual"></strong>
+          </div>
+          <div class="metric-grid">
+            <article>
+              <span>ROI</span>
+              <strong id="roiPercentual"></strong>
+            </article>
+            <article>
+              <span>Payback</span>
+              <strong id="paybackMeses"></strong>
+            </article>
+            <article>
+              <span>ROI liquido</span>
+              <strong id="roiLiquido"></strong>
+            </article>
+            <article>
+              <span>Custo total</span>
+              <strong id="custoTotalPrimeiroAno"></strong>
+            </article>
+          </div>
+        </aside>
+      </section>
+
+      <section class="breakdown" aria-label="Detalhamento dos beneficios">
+        <article>
+          <span>Produtividade</span>
+          <strong id="valorHorasEconomizadas"></strong>
+          <small id="horasEconomizadasAno"></small>
+        </article>
+        <article>
+          <span>Qualidade</span>
+          <strong id="valorErrosEvitados"></strong>
+          <small id="errosEvitados"></small>
+        </article>
+        <article>
+          <span>Crescimento</span>
+          <strong id="valorReceitaIncremental"></strong>
+          <small>Receita considerada pela margem</small>
+        </article>
+        <article>
+          <span>Investimento</span>
+          <strong id="investimentoDetalhe"></strong>
+          <small>Implementacao + operacao anual</small>
+        </article>
+      </section>
+    </main>
+
+    <script src="./roi-engine.js"></script>
+    <script src="./formatters.js"></script>
+    <script src="./ui.js"></script>
+  </body>
+</html>
